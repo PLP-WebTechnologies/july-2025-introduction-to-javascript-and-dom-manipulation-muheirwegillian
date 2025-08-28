@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Basics Project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Mastering JavaScript Basics</h1>
+    <p>Interactive Demo of Variables, Functions, Loops, and DOM</p>
+  </header>
+
+  <main>
+    <!-- Part 1: Variables, Data Types, Conditionals -->
+    <section id="part1">
+      <h2>Part 1: JavaScript Basics</h2>
+      <p>Enter your age and see if you're eligible to vote:</p>
+      <input type="number" id="ageInput" placeholder="Enter your age">
+      <button id="checkAgeBtn">Check Eligibility</button>
+      <p id="ageResult"></p>
+    </section>
+
+    <!-- Part 2: Functions -->
+    <section id="part2">
+      <h2>Part 2: JavaScript Functions</h2>
+      <p>Calculate the total of two numbers:</p>
+      <input type="number" id="num1" placeholder="Number 1">
+      <input type="number" id="num2" placeholder="Number 2">
+      <button id="calcBtn">Calculate Total</button>
+      <p id="calcResult"></p>
+    </section>
+
+    <!-- Part 3: Loops -->
+    <section id="part3">
+      <h2>Part 3: Loops</h2>
+      <p>Generate a list of fruits using a loop:</p>
+      <button id="showFruitsBtn">Show Fruits</button>
+      <ul id="fruitsList"></ul>
+    </section>
+
+    <!-- Part 4: DOM Manipulation -->
+    <section id="part4">
+      <h2>Part 4: DOM Manipulation</h2>
+      <p>Click the button to toggle background color:</p>
+      <button id="toggleBgBtn">Toggle Background</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Project by: Your Name</p>
+  </footer>
+
+  <script src="script.js">
+    
+// PART 1: Variables & Conditionals
+
+
+// Capture age input and check voting eligibility
+document.getElementById("checkAgeBtn").addEventListener("click", function() {
+  let age = document.getElementById("ageInput").value; // Variable declaration
+  let result = "";
+
+  if (age >= 18) {
+    result = "You are eligible to vote!";
+  } else if (age > 0) {
+    result = "You are NOT eligible to vote.";
+  } else {
+    result = "Please enter a valid age.";
+  }
+
+  document.getElementById("ageResult").textContent = result;
+});
+
+// =========================
+// PART 2: Functions (Reusability)
+// =========================
+
+// Function to calculate sum of two numbers
+function calculateSum(a, b) {
+  return a + b;
+}
+
+// Function to format a message
+function formatMessage(message) {
+  return "Result: " + message;
+}
+
+// Use the functions when button is clicked
+document.getElementById("calcBtn").addEventListener("click", function() {
+  let num1 = parseFloat(document.getElementById("num1").value);
+  let num2 = parseFloat(document.getElementById("num2").value);
+
+  let total = calculateSum(num1, num2); // Using custom function
+  document.getElementById("calcResult").textContent = formatMessage(total);
+});
+
+// =========================
+// PART 3: Loops
+// =========================
+
+// Example 1: Array loop to display fruits
+let fruits = ["Apple", "Banana", "Cherry", "Mango", "Orange"];
+
+document.getElementById("showFruitsBtn").addEventListener("click", function() {
+  let fruitsList = document.getElementById("fruitsList");
+  fruitsList.innerHTML = ""; // Clear previous list
+
+  // Using forEach loop
+  fruits.forEach(function(fruit) {
+    let li = document.createElement("li");
+    li.textContent = fruit;
+    fruitsList.appendChild(li);
+  });
+});
+
+// Example 2: While loop (simple countdown in console)
+let countdown = 5;
+while (countdown > 0) {
+  console.log("Countdown: " + countdown);
+  countdown--;
+}
+
+
+// PART 4: DOM Manipulation
+
+
+// Change background color when button is clicked
+document.getElementById("toggleBgBtn").addEventListener("click", function() {
+  document.body.classList.toggle("dark-mode");
+});
+
+// Add CSS for dark mode dynamically
+let style = document.createElement("style");
+style.innerHTML = `
+  .dark-mode {
+    background-color: #222;
+    color: white;
+  }
+`;
+document.head.appendChild(style);
+
+  </script>
+</body>
+</html>
